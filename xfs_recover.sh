@@ -44,10 +44,10 @@ do
 		dd if=$xfsdevice bs=$blksize skip=$(($agblocks * $agnumber + $offset)) count=$count of=$tmp_file
 	
 		# Copy over permissions
-		echo chown $user:$group $tmp_file
-		echo chmod $perm $tmp_file
+		chown $user:$group $tmp_file
+		chmod $perm $tmp_file
 	
 		# Copy file back.
-		echo mv -f $tmp_file $f
+		mv -f $tmp_file $f
 	fi
 done
