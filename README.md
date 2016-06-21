@@ -25,7 +25,9 @@ You can run the script as follows:
 Where:
 
 `dir_name`: Is the directory you wish to recover.
+
 `xfsdevice`: Is the device name of the XFS device your directory lives on (this is not the mount point but the actual `/dev`)
+
 `tmp_file`: Is the temporary file that the data for the file to be recovered is dumped to.  It is recommended that you have this location be on a disk that is large enough to handle the largest file you wish to recover.  This is only a temporary file.  It will be destroyed once the file is recovered.
 
 The script itself takes the inputs and looks up the info on the XFS filsystem.  It then runs `find` to find all the files of zero size.  It is assumed that all files with zero size need to be recovered.  It then walks each file, grabbing its inode number and permissions.  It then uses `xfs_db` to get essential data about the physical location of the file on the disk.  If it is recoverable it will `dd` the data to the `tmp_file` and once complete set the permissions.  It will then move that file back to its original location.  Note this will overwrite the original file, thus there will be no further recovery attempts possible.  Thus it is best to try a few test files first, or modify the script to not copy back the file.
