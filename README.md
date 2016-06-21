@@ -20,7 +20,7 @@ I've written a script which will search the filesystem, find these files, and th
 
 You can run the script as follows:
 
-`xfs_recover.sh dir_name xfsdevice tmp_file`
+`./xfs_recover.sh dir_name xfsdevice tmp_file`
 
 Where:
 
